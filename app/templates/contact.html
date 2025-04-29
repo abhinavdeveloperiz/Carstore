@@ -1,15 +1,27 @@
 {% extends 'base.html' %}
 {% load static %}
+
 {% block main_block %}
 <link rel="stylesheet" href="{% static 'css/contact.css' %}">
+<!-- Bootstrap Icons -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-icons/1.10.0/font/bootstrap-icons.min.css">
 
-<!-- Hero Section -->
-<section class="hero-section">
-    <div class="hero-overlay text-center">
-        <h1 class="display-4 fw-bold">Contact Us</h1>
-        <p class="lead d-none d-sm-block">Top-notch support & offerings tailored for luxury car buyers</p>
+<!-- Hero Section with Parallax Effect -->
+{% load static %}
+
+<section class="hero-section position-relative">
+    <div class="hero-overlay position-absolute w-100 h-100 d-flex flex-column justify-content-center align-items-center">
+        
+        
+        <div class="mt-4" data-aos="fade-up" data-aos-delay="400">
+            <h1 class="display-4 fw-bold text-white mt-5" data-aos="fade-down">Contact Us</h1>
+            <a href="#contact-form" class="btn btn-warning px-4 py-2 rounded-pill fw-semibold d-flex justify-content-center">
+                <i class="bi bi-envelope-fill"></i>Send Message
+            </a>
+        </div>
     </div>
 </section>
+
 
 <!-- Flash Messages -->
 {% if messages %}
@@ -17,7 +29,7 @@
     {% for message in messages %}
     <div class="alert alert-{{ message.tags }} alert-dismissible fade show shadow-lg rounded-4 d-flex align-items-center gap-3"
         role="alert" data-aos="fade-left" data-aos-duration="1000" style="min-width: 300px; max-width: 400px;">
-
+        
         <!-- Icon (change based on message tag) -->
         {% if message.tags == "success" %}
         <i class="bi bi-check-circle-fill text-success fs-4"></i>
@@ -30,12 +42,12 @@
         {% else %}
         <i class="bi bi-bell-fill text-secondary fs-4"></i>
         {% endif %}
-
+        
         <!-- Message Content -->
         <div class="flex-grow-1">
             <span class="fw-semibold">{{ message }}</span>
         </div>
-
+        
         <!-- Close Button -->
         <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
     </div>
@@ -43,44 +55,159 @@
 </div>
 {% endif %}
 
+<!-- Contact Information Cards -->
+<div class="container my-5">
+    <div class="row g-4 justify-content-center">
+        <!-- Phone Card -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card">
+                <div class="contact-icon-wrapper mb-3 mx-auto">
+                    <i class="bi bi-telephone-fill fs-1 text-warning"></i>
+                </div>
+                <h4>Call Us</h4>
+                <p class="text-muted mb-2">Our customer support is available</p>
+                <a href="tel:+91-1234567890" class="text-decoration-none fw-semibold fs-5">+91 7907850399</a>
+            </div>
+        </div>
+        
+        <!-- Address Card -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card">
+                <div class="contact-icon-wrapper mb-3 mx-auto">
+                    <i class="bi bi-geo-alt-fill fs-1 text-warning"></i>
+                </div>
+                <h4>Our Location</h4>
+                <p class="text-muted mb-2">Visit our showroom</p>
+                <address class="fw-semibold fs-6 mb-0">
+                    Car Store, 2nd Floor, Ammachiveedu Devi Temple Rd, Thangasherry East, Thangassery, Kollam, India, Kerala<br>
+                   
+                </address>
+            </div>
+        </div>
+        
+        <!-- Email Card -->
+        <div class="col-md-4">
+            <div class="card h-100 border-0 shadow-sm rounded-4 text-center p-4 contact-card">
+                <div class="contact-icon-wrapper mb-3 mx-auto">
+                    <i class="bi bi-envelope-fill fs-1 text-warning"></i>
+                </div>
+                <h4>Email Us</h4>
+                <p class="text-muted mb-2">We'll respond within 24 hours</p>
+                <a href="mailto:info@carstore.com" class="text-decoration-none fw-semibold fs-5">carstoreindiadeals@gmail.com</a>
+                <p class="text-muted mt-2 mb-0">For sales and inquiries</p>
+            </div>
+        </div>
+    </div>
+</div>
 
 <!-- Contact Section -->
-{% load static %}
-
-<div class="container my-5">
-    <div class="row border border-2 rounded-5 overflow-hidden shadow">
-
-        <!-- Right: Contact Form -->
-        <div class="condact-form col-md-7 p-4 bg-light">
-            <h4>Send us a Message</h4>
-            <form action="" method="post" novalidate>
+<div class="container my-5" id="contact-form">
+    <div class="row">
+        <div class="col-12 text-center mb-4" data-aos="fade-up">
+            <h2 class="fw-bold position-relative d-inline-block pb-2">Get In Touch</h2>
+            <p class="text-muted">We'd love to hear from you. Fill out the form below and we'll get back to you shortly.</p>
+        </div>
+    </div>
+    
+    <div class="row border-0 rounded-5 overflow-hidden shadow">
+        <!-- Left: Contact Form -->
+        <div class="contact-form col-lg-7 p-5 bg-white">
+            <h4 class="mb-4"><i class="bi bi-send-fill text-warning me-2"></i>Send us a Message</h4>
+            <form action="" method="post" novalidate class="row g-3">
                 {% csrf_token %}
                 {{ form }}
-                <button type="submit" class="btn btn-warning mt-2">Submit</button>
+                <div class="col-12">
+                    <button type="submit" class="btn btn-warning px-4 py-2 rounded-pill fw-semibold">
+                        <i class="bi bi-cursor-fill me-2"></i>Submit Message
+                    </button>
+                </div>
             </form>
         </div>
-
-        <!-- Left: Image -->
-        <div class="getin-touch col-md-5 p-0 d-none d-md-block">
+        
+        <!-- Right: Image -->
+        <div class="getin-touch col-lg-5 p-0 d-none d-lg-block">
             <img src="{% static 'images/contact.jpg' %}" alt="Contact" class="img-fluid h-100 w-100"
-                style="object-fit: cover;">
+                style="object-fit: cover; object-position: center;">
+        </div>
+    </div>
+</div>
+
+<!-- Business Hours Section -->
+<div class="container my-5">
+    <div class="row">
+        <div class="col-12 text-center mb-4" data-aos="fade-up">
+            <h2 class="fw-bold position-relative d-inline-block pb-2">Business Hours</h2>
+            <p class="text-muted">When you can visit our showroom</p>
+        </div>
+    </div>
+    
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card border-0 shadow-sm rounded-4 overflow-hidden">
+                <div class="card-body p-0">
+                    <table class="table table-hover mb-0">
+                        <tbody>
+                            <tr>
+                                <td class="py-3 ps-4"><i class="bi bi-calendar-day text-warning me-3"></i>Monday</td>
+                                <td class="py-3 text-end pe-4 fw-semibold">9:00 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 ps-4"><i class="bi bi-calendar-day text-warning me-3"></i>Tuesday</td>
+                                <td class="py-3 text-end pe-4 fw-semibold">9:00 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 ps-4"><i class="bi bi-calendar-day text-warning me-3"></i>Wednesday</td>
+                                <td class="py-3 text-end pe-4 fw-semibold">9:00 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 ps-4"><i class="bi bi-calendar-day text-warning me-3"></i>Thursday</td>
+                                <td class="py-3 text-end pe-4 fw-semibold">9:00 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 ps-4"><i class="bi bi-calendar-day text-warning me-3"></i>Friday</td>
+                                <td class="py-3 text-end pe-4 fw-semibold">9:00 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 ps-4"><i class="bi bi-calendar-day text-warning me-3"></i>Saturday</td>
+                                <td class="py-3 text-end pe-4 fw-semibold">9:00 AM - 6:00 PM</td>
+                            </tr>
+                            <tr>
+                                <td class="py-3 ps-4"><i class="bi bi-calendar-day text-warning me-3"></i>Sunday</td>
+                                <td class="py-3 text-end pe-4 fw-semibold">9:00 AM - 6:00 PM</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Google Maps with Nice Header -->
+<div class="container-fluid bg-light py-5 mt-5">
+    <div class="container">
+        <div class="row">
+            <div class="col-12 text-center mb-4" data-aos="fade-up">
+                <h2 class="fw-bold position-relative d-inline-block pb-2">Our Location</h2>
+                <p class="text-muted">Find our luxury car showroom on the map below</p>
+            </div>
+        </div>
+        
+        <div class="row">
+            <div class="col-12">
+                <div class="map-container rounded-4 overflow-hidden shadow">
+                    <iframe
+                        src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.9125040265335!2d76.62967247449762!3d8.887726891185414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05fd2f1ad5a905%3A0x2524a1f25398ffa0!2sCar%20Store!5e0!3m2!1sen!2sin!4v1744970396774!5m2!1sen!2sin"
+                        width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+                        referrerpolicy="no-referrer-when-downgrade"></iframe>
+                </div>
+            </div>
         </div>
     </div>
 </div>
 
 
-<!-- Google Maps -->
-<div class="row mt-5">
-    <div class="col-12">
-        <h4 class="text-center">Find Us on Google Maps</h4>
-        <div class="map-container" data-aos="slide-right">
 
 
-            <iframe
-                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3941.9125040265335!2d76.62967247449762!3d8.887726891185414!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3b05fd2f1ad5a905%3A0x2524a1f25398ffa0!2sCar%20Store!5e0!3m2!1sen!2sin!4v1744970396774!5m2!1sen!2sin"
-                width="100%" height="450" style="border:0;" allowfullscreen="" loading="lazy"
-                referrerpolicy="no-referrer-when-downgrade"></iframe>
-        </div>
-    </div>
-</div>
+
 {% endblock %}

@@ -1,32 +1,66 @@
-body {
-    font-family: 'Poppins', sans-serif;
-    background-color: #fff;
-    color: #000;
-    
-}
-
-.hero-section {
-    background: url('../images/head-image.jpg') center center / cover no-repeat;
-    height: 70vh;
-    position: relative;
-    color: white;
-}
-
-.hero-overlay {
-    position: absolute;
-    top: 0;
-    left: 0;
-    height: 100%;
-    width: 100%;
-    background-color: rgba(0, 0, 0, 0.5);
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    flex-direction: column;
-}
-
-@media(max-width: 768px){
-    .hero-section{
-        height: 40vh;
+    /* Custom CSS for Contact Page */
+     /* head image  */
+     .hero-section {
+        height: 350px;
+        background-image: url('../images/head-image.jpg'); /* adjust path if needed */
+        background-size: cover;
+        height: 60vh;
+        background-position: center;
+        background-attachment: fixed;
+        position: relative;
+        object-fit: cover;
     }
-}
+    
+    .hero-overlay {
+        background: rgba(0, 0, 0, 0.6);
+    }
+    
+    .hero-section {
+        margin-top: -2rem; /* Adjust based on your navbar height */
+    }
+    
+    .contact-icon-wrapper {
+        width: 80px;
+        height: 80px;
+        border-radius: 50%;
+        background-color: rgba(255, 193, 7, 0.1);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        transition: all 0.3s ease;
+    }
+    
+    .contact-card {
+        transition: transform 0.3s ease;
+    }
+    
+    .contact-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .contact-card:hover .contact-icon-wrapper {
+        background-color: rgba(255, 193, 7, 0.2);
+    }
+    
+    h2.fw-bold::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 50px;
+        height: 3px;
+        background-color: #ffc107;
+    }
+    
+    .map-container {
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+    }
+    
+    @media (max-width: 768px) {
+        .hero-section {
+            height: 250px !important;
+        }
+    }
+
+    

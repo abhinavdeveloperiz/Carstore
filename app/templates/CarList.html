@@ -215,8 +215,9 @@
                     <p class="mt-1">Urgent</p>
                 </span>
                 {% endif %}
-
+                <a href="{% url 'car-details' c.id %}">
                 <img src="{{ c.image.url }}" class="card-img-top img-fluid img-cover" alt="{{ c.name }}">
+            </a>
                 <div class="card-body">
                     <div class="row">
                         <div class="col-12">
